@@ -1,0 +1,71 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Responsive Nav Bar</title>
+
+		<!-- My Custom Stylesheet -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<!-- Font Awesome CDN -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+	</head>
+	<body>
+		<!-- Main Nav-bar  -->
+		<nav class="nav-bar">
+			<div class="logo">
+				Responsive
+			</div>
+			<ul class="nav-items">
+				<li><a href="index.html">home</a></li>
+				<li><a href="#">services</a></li>
+				<li><a href="#">projects</a></li>
+				<li><a href="#">about</a></li>
+				<li><a href="#">contact</a></li>
+			</ul>
+			<div class="menu">
+				<i class="fa fa-bars"></i>
+			</div>
+		</nav>
+
+		<!-- Nav Bar for Mobile Devices -->
+		<nav class="nav-right">
+			<div class="menu" style="font-size: 2rem">
+				<i class="fa fa-times"></i>
+			</div>
+			<ul class="nav-items">
+				<li><a href="index.html">home</a></li>
+				<li><a href="#">services</a></li>
+				<li><a href="#">projects</a></li>
+				<li><a href="#">about</a></li>
+				<li><a href="#">contact</a></li>
+			</ul>
+		</nav>
+		
+
+		<script>
+			const navRight = document.querySelector('.nav-right');
+			const menu = document.querySelector('.nav-bar .menu');
+
+			// listen for click on menu and do these stuffs
+			menu.addEventListener('click',function(){
+				console.log('clicked')
+				navRight.style.right = '0';
+			});
+
+			// listen for click on body only when nav right is shown and on click anywhere outside nav Right close that nav bar!!
+
+			document.body.addEventListener('click',function(e){
+				const navRightValue =parseInt(window.getComputedStyle(navRight).getPropertyValue('right'));
+				// Run only when nav right is shown.....meaning we do not want to run these functions even when nav is not clicked
+				if(navRightValue === 0){
+					// check for the clicked area and trigger a specific function only when clicking is done outside navright
+					const navRNavItems = document.querySelector('.nav-right .nav-items')
+					if(e.target !== navRight && e.target !== navRNavItems){
+						navRight.style.right = '-16rem';
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
